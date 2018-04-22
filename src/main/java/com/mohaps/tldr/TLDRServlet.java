@@ -182,6 +182,15 @@ public class TLDRServlet extends HttpServlet {
 				for (Item item : feedItems) {
 					String summary = Factory.getSummarizer().summarize(
 							item.getText(), sentenceCount);
+					
+					// get img
+					Document doc = Jsoup.parseBodyFragment(item.getText());
+					for( Element element : doc.select("img[src]") ) {
+						String img = element;
+						summary = img + "<br />" + summary;
+						break;
+					}
+					
 					// TODO: (mohaps) hook up keywords after stem word fix (currently working on this)
 					// might have to wait till I get topic modelling integrated till I turn this back on
 
