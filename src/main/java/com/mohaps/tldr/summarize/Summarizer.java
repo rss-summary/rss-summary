@@ -143,7 +143,7 @@ public class Summarizer implements ISummarizer {
 				while (summarySentences.hasNext()) {
 					sb.append(summarySentences.next()).append(".");
 					if (summarySentences.hasNext()) {
-						sb.append(" ");
+						sb.append(" <br /><br />");
 					}
 				}
 				// bob's your uncle :)
