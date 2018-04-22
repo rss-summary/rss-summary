@@ -65,17 +65,19 @@ public final class Feeds {
 		private String author;
 		private String link;
 		private String text;
+		private String textRaw;
 
 		public Item() {
 
 		}
 
-		public Item(String title, String author, String link, String text) {
+		public Item(String title, String author, String link, String text, String textRaw) {
 			super();
 			this.title = title;
 			this.author = author;
 			this.link = link;
 			this.text = text;
+			this.textRaw = textRaw;
 		}
 
 		public String getTitle() {
@@ -92,6 +94,10 @@ public final class Feeds {
 
 		public String getText() {
 			return text;
+		}
+
+		public String getTextRaw() {
+			return textRaw;
 		}
 
 		@Override
@@ -114,6 +120,10 @@ public final class Feeds {
 
 		public void setText(String text) {
 			this.text = text;
+		}
+
+		public void setTextRaw(String textRaw) {
+			this.textRaw = textRaw;
 		}
 
 	}
@@ -271,7 +281,7 @@ public final class Feeds {
 				String desc = rawDesc != null ? Jsoup.parse(
 						Words.replaceSmartQuotes(rawDesc)).text() : entry
 						.getLink();
-				items.add(new Item(title, author, link, desc));
+				items.add(new Item(title, author, link, desc, rawDesc));
 			} else {
 				// System.out.println(title);
 				for (SyndContent content : contents) {
@@ -279,7 +289,7 @@ public final class Feeds {
 						String html = Jsoup.parse(
 								Words.replaceSmartQuotes(content.getValue()))
 								.text();
-						items.add(new Item(title, author, link, html));
+						items.add(new Item(title, author, link, html, content.getValue()));
 					} else {
 						System.out.println(">> non html content type : "
 								+ content.getType());
