@@ -188,8 +188,7 @@ public class TLDRServlet extends HttpServlet {
 					// get img
 					Document doc = Jsoup.parseBodyFragment(item.getText());
 					for( Element element : doc.select("img[src]") ) {
-						String img = element;
-						summary = img + "<br />" + summary;
+						summary = element.text() + "<br /><br />" + summary;
 						break;
 					}
 					
