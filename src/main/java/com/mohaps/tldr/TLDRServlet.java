@@ -212,6 +212,7 @@ public class TLDRServlet extends HttpServlet {
 					entries, millis);
 			req.setAttribute("summarized_feed", summarizedFeed);
 			resp.setContentType("application/xml");
+			resp.setHeader("Content-Type", "application/xml; charset=utf-8");
 			req.getRequestDispatcher("/feed_rss.jsp").forward(req, resp);
 		}
 	}
