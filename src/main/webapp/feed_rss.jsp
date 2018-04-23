@@ -8,8 +8,9 @@
   <c:forEach var="feedEntry" items="${summarized_feed.entries}">
   <item>
     <title><c:out value="${feedEntry.title}" /></title>
-    <link>${feedEntry.link}</link>
     <description><c:out value="${feedEntry.summary}" /></description>
+    <link>${feedEntry.link}</link>
+    <guid isPermaLink="false">${feedEntry.link}</guid>
   </item>
   </c:forEach>
 </channel>
